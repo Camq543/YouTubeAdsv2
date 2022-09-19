@@ -17,3 +17,8 @@ You will also need a google account. Change the username and password in the con
 
 ### Running the program
 The scraper is run by calling 'seed_accounts.py' This program will generate a list of videos pulled from a given video file (see constants/video_list_example.json for example), then watch the full videos to seed an account for recommendations and personalization
+
+### To do
+* Write code to manage interests (record and delete them from personal profile)
+* Update to new selenium version - find_element_by_xpath is deprecated. Need to use new methods (probably best to use CSS selectors)
+* Fix ad targeting info retrieval
