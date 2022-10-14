@@ -55,23 +55,6 @@ def get_video_list(filename, username, num_videos):
 
     return video_list
 
-# def get_video_list(filename, num_videos):
-#     # Get's list of videos from smaller dataset
-#     # Just picks num_videos of videos randomly from a list
-#     # Older function
-
-#     infile = open(filename, 'r')
-#     video_list = []
-#     for line in infile:
-#         if line.strip() == "#NAME?":
-#             continue
-#         video_list.append(line.strip())
-
-#     infile.close()
-#     random.shuffle(video_list)
-
-#     return video_list[:num_videos]
-
 def get_video(filename, seen, username):
     # Gets a single video from JSON object based on account username
     # Makes sure video was not already watched (in seen list)
