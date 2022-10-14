@@ -41,7 +41,7 @@ def get_video_list(filename, username, num_videos):
     count = 0
 
     # Get list of channels and videos this username is meant to watch
-    channels = list(vids['username'].keys())
+    channels = list(vids[username].keys())
 
     # Pick a random channel and a random video from that channel and add it to the list
     while count < num_videos:
@@ -58,7 +58,7 @@ def get_video_list(filename, username, num_videos):
 # def get_video_list(filename, num_videos):
 #     # Get's list of videos from smaller dataset
 #     # Just picks num_videos of videos randomly from a list
-#     # Older function 
+#     # Older function
 
 #     infile = open(filename, 'r')
 #     video_list = []
@@ -85,7 +85,7 @@ def get_video(filename, seen, username):
     for video in video_list:
         if video not in seen:
             return video
-    
+
     return None
 
 def get_descr_link(link_text):

@@ -45,7 +45,7 @@ def main():
         'numvideos' : 2,
         # Filename to pull videos from (stored in constants)
         'video_list' : 'seed_videos.json',
-        # Text file with list of videos seen already 
+        # Text file with list of videos seen already
         'watched_videos' : 'seen_videos.txt'
     }
 
@@ -98,7 +98,7 @@ def main():
             watched = open(seen_path, 'w')
 
         # For multiple videos, call get_video_list
-        video_list = get_video_list('constantls/' + config['video_list'], config['username'], config['num_videos'])
+        video_list = get_video_list('constants/' + config['video_list'], config['username'], config['numvideos'])
 
         # For single video, call get_video
         video_id = get_video('constants/' + config['video_list'], seen_videos, config['username'])
@@ -168,7 +168,7 @@ def main():
             logfile.write('Checking video {}\n'.format(videoid))
 
             # Get collection time
-            collectiontime = int(time.time())        
+            collectiontime = int(time.time())
 
             # Load video
             driver.get(base_url + videoid)
@@ -179,7 +179,7 @@ def main():
             # Check for age gate and bypass
             inappropriate = check_viewer_discretion(driver)
 
-            # Try to play video 
+            # Try to play video
             played = play_video(driver)
 
             check_for_premium_ad(driver)
@@ -200,9 +200,9 @@ def main():
                 data.append(entry)
                 # events = get_network_logs(driver)
                 continue
-            
+
             check_for_premium_ad(driver)
-            
+
             # Restart video in case youtube saved our watch time
             skip_to(driver, '0')
             time.sleep(2)
@@ -223,7 +223,7 @@ def main():
 
             # Check for misinformation context box
             context, context_link, context_topic = check_context(driver)
-            
+
             # Check for paid promotion disclaimer
             sponsor = check_sponsorship_disclosure(driver)
 
@@ -237,13 +237,13 @@ def main():
 
             # Get video title
             title = get_title(driver).encode("utf-8", 'ignore').decode('utf-8','ignore')
-        
+
             # Get channel info
             channelID, channelName = get_channel_info(driver)
             # Strip non utf chars
             channelID = channelID.encode("utf-8", 'ignore').decode('utf-8','ignore')
             channelName = channelName.encode("utf-8", 'ignore').decode('utf-8','ignore')
-            
+
             # If it's live, the engagement data is weird so we ignore it
             if islive:
                 likes = get_likes(driver)
@@ -260,7 +260,7 @@ def main():
                 comments = get_comment_count(driver)
 
 
-            # Get video description info and list of links 
+            # Get video description info and list of links
             descr, descrurls = get_description(driver)
 
             # Strip non utf chars
@@ -285,7 +285,7 @@ def main():
             while time_left - watch_time > 1:
                 print('Time left', time_left)
                 print('Watch time', watch_time)
-                
+
                 check_for_premium_ad(driver)
                 adcheck = skip_ads(driver)
 
@@ -360,7 +360,7 @@ def main():
         logfile.close()
         print(traceback.format_exc())
         exit()
-    
+
 
     # Make tests directory if needed and store test data
     if os.path.exists('tests'):
@@ -371,7 +371,7 @@ def main():
     json.dump(data, outfile)
     outfile.close()
 
-    # Add watched videos to list 
+    # Add watched videos to list
     for entry in data:
         watched.write(entry['videoid'] + '\n')
     watched.close()
