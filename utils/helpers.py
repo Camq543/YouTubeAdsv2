@@ -45,8 +45,8 @@ def get_video_list(filename, username, num_videos):
 
     # Pick a random channel and a random video from that channel and add it to the list
     while count < num_videos:
-        channel_vids = vids[username][channels[random.randint(0, len(channels) - 1)]]
-        video_id = channel_vids[username][random.randint(0,len(channel_vids) - 1)]['vid_id']
+        channel_vids = random.choice(vids[username])
+        video_id = random.choice(channel_vids)
         if video_id not in video_list:
             video_list.append(video_id)
             count += 1
